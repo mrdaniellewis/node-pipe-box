@@ -1,0 +1,22 @@
+{
+  "name": "pipe-box",
+  "version": "1.0.0",
+  "description": "Wrap a series of piped streams into a single stream",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "pipe",
+    "transform",
+    "stream"
+  ],
+  "author": "Daniel Lewis",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "*",
+    "expect": "*",
+    "stream-collect": "*",
+    "sinon": "*"
+  }
+}
