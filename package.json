@@ -12,6 +12,7 @@
     "stream"
   ],
   "author": "Daniel Lewis",
+  "repository": "https://github.com/mrdaniellewis/node-pipe-box.git",
   "license": "ISC",
   "devDependencies": {
     "mocha": "*",
