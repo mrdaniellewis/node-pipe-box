@@ -114,37 +114,43 @@ describe( 'PipeBox', function() {
 
 	} );
 
-	it( 'pauses writing if the _inputStream becomes corked and resumes when uncorked', function() {
+	if ( stream.Writable.prototype.cork ) {
 
-		var inputStream = new stream.PassThrough();
+		// There is no cork method in Node 0.10
 
-		var spy = sinon.spy(inputStream ,'_transform');
+		it( 'pauses writing if the _inputStream becomes corked and resumes when uncorked', function() {
 
-		var pipeBox = new PipeBox( { inputStream: inputStream } );
+			var inputStream = new stream.PassThrough();
 
-		// Write and check the write worked
-		pipeBox.write('test');
-		expect( inputStream.read(4).toString() ).toBe('test');
-		expect( spy.calledOnce ).toBe( true ); 
+			var spy = sinon.spy(inputStream ,'_transform');
 
-		// Cork
-		inputStream.cork();
+			var pipeBox = new PipeBox( { inputStream: inputStream } );
 
-		// Write and check the write doesn't get through
-		pipeBox.write('test');
-		expect( inputStream.read(4) ).toBe(null);
-		expect( spy.calledTwice ).toBe( false ); 
+			// Write and check the write worked
+			pipeBox.write('test');
+			expect( inputStream.read(4).toString() ).toBe('test');
+			expect( spy.calledOnce ).toBe( true ); 
 
-		// Uncork and see if the data comes through
-		inputStream.uncork();
-		expect( inputStream.read(4).toString() ).toBe('test');
-		expect( spy.calledTwice ).toBe( true ); 
+			// Cork
+			inputStream.cork();
 
-		// Write again
-		pipeBox.write('test');
-		expect( inputStream.read(4).toString() ).toBe('test');
+			// Write and check the write doesn't get through
+			pipeBox.write('test');
+			expect( inputStream.read(4) ).toBe(null);
+			expect( spy.calledTwice ).toBe( false ); 
 
-	} );
+			// Uncork and see if the data comes through
+			inputStream.uncork();
+			expect( inputStream.read(4).toString() ).toBe('test');
+			expect( spy.calledTwice ).toBe( true ); 
+
+			// Write again
+			pipeBox.write('test');
+			expect( inputStream.read(4).toString() ).toBe('test');
+
+		} );
+
+	}
 
 	it( 'works with object streams as well', function() {
 

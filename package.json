@@ -19,5 +19,8 @@
     "expect": "*",
     "stream-collect": "*",
     "sinon": "*"
+  },
+  "engines" : { 
+    "node" : ">=0.9.0" 
   }
 }
