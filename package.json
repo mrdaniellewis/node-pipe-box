@@ -1,6 +1,6 @@
 {
   "name": "pipe-box",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Wrap a series of piped streams into a single stream",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "stream-collect": "*",
     "sinon": "*"
   },
-  "engines" : { 
-    "node" : ">=0.9.0" 
+  "engines": {
+    "node": ">=0.9.0"
   }
 }
