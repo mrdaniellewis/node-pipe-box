@@ -35,7 +35,13 @@ function PipeBox(options) {
 		.on( 'end', function() {
 			// Send the end chunk
 			this.push(null);
-		}.bind(this) );
+		}.bind(this) )
+		.on( 'finish', function() {
+			// For some reason the input stream can require
+			// a little kick to output end event in some circumstances
+			// I'd write a test case if I could figure it out
+			this.read(0);
+		} );
 
 	this.on( 'finish', function() {
 		// We've got all the data in, end the inputstream
