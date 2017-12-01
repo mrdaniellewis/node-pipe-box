@@ -3,8 +3,11 @@
   "version": "1.0.2",
   "description": "Wrap a series of piped streams into a single stream",
   "main": "index.js",
+  "files": [],
   "scripts": {
-    "test": "mocha"
+    "lint": "eslint *.js",
+    "jest": "jest",
+    "test": "npm run lint && npm run jest"
   },
   "keywords": [
     "pipe",
@@ -15,12 +18,29 @@
   "repository": "https://github.com/mrdaniellewis/node-pipe-box.git",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "*",
-    "expect": "*",
-    "stream-collect": "*",
-    "sinon": "*"
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^21.2.1",
+    "stream-collect": "^2.1.0"
   },
-  "engines": {
-    "node": ">=0.9.0"
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "rules": {
+      "no-underscore-dangle": "off",
+      "no-cond-assign": [
+        "error",
+        "except-parens"
+      ]
+    }
+  },
+  "jest": {
+    "clearMocks": true
   }
 }
