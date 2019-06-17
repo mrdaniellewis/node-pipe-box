@@ -1,6 +1,6 @@
 {
   "name": "pipe-box",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Wrap a series of piped streams into a single stream",
   "main": "index.js",
   "files": [],
