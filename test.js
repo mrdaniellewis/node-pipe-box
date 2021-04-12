@@ -6,7 +6,7 @@ const { Transform, PassThrough } = require('stream');
 const { Collect } = require('stream-collect');
 const fs = require('fs');
 const pathUtils = require('path');
-const PipeBox = require('./');
+const PipeBox = require('.');
 
 const path = pathUtils.resolve(__dirname, 'the-machine-stops.txt');
 const data = fs.readFileSync(path, { encoding: 'utf8' });

@@ -18,11 +18,11 @@
   "repository": "https://github.com/mrdaniellewis/node-pipe-box.git",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "jest": "^24.9.0",
-    "stream-collect": "^2.1.5"
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "stream-collect": "^2.2.0"
   },
   "eslintConfig": {
     "extends": "airbnb-base",

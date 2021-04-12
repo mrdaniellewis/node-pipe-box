@@ -7,10 +7,10 @@ class PipeBox extends Transform {
     const { writeable, readable, ...rest } = options;
     super(rest);
     if (writeable) {
-      this.writeable = writeable;
+      this._writeable = writeable;
     }
     if (readable) {
-      this.readable = readable;
+      this._readable = readable;
     }
 
     this._initiated = false;
@@ -18,9 +18,9 @@ class PipeBox extends Transform {
 
   _init() {
     this._initiated = true;
-    this.readable.on('readable', () => {
+    this._readable.on('readable', () => {
       let chunk;
-      while ((chunk = this.readable.read()) !== null) {
+      while ((chunk = this._readable.read()) !== null) {
         if (this.push(chunk) === false) {
           break;
         }
@@ -32,16 +32,16 @@ class PipeBox extends Transform {
     if (!this._initiated) {
       this._init();
     }
-    if (!this.writeable.write(chunk, encoding)) {
-      this.writeable.once('drain', () => this.uncork());
+    if (!this._writeable.write(chunk, encoding)) {
+      this._writeable.once('drain', () => this.uncork());
       this.cork();
     }
     callback();
   }
 
   _flush(callback) {
-    this.readable.on('end', () => callback());
-    this.writeable.end();
+    this._readable.on('end', () => callback());
+    this._writeable.end();
   }
 }
 
